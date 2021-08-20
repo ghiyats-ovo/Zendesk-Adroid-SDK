@@ -81,6 +81,11 @@ class ChatPresenter implements ChatMvp.Presenter {
         model.clearChatIfEnded();
     }
 
+    @Override
+    public void endChat() {
+        model.endChat();
+    }
+
     private class MyChatListener implements ChatMvp.Model.ChatListener {
 
         // TODO: 11/08/21 2.

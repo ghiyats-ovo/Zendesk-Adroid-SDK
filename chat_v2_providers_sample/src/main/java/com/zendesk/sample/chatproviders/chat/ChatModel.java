@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.Looper;
 
 import android.util.Log;
+import com.zendesk.service.ErrorResponse;
+import com.zendesk.service.ZendeskCallback;
 import java.io.File;
 import java.lang.ref.WeakReference;
 
@@ -165,6 +167,21 @@ class ChatModel implements ChatMvp.Model {
                 && chatProvider.getChatState().getChatSessionStatus() == ChatSessionStatus.ENDED) {
             Chat.INSTANCE.clearCache();
         }
+    }
+
+    @Override
+    public void endChat() {
+        chatProvider.endChat(new ZendeskCallback<Void>() {
+            @Override
+            public void onSuccess(final Void unused) {
+                Chat.INSTANCE.clearCache();
+            }
+
+            @Override
+            public void onError(final ErrorResponse errorResponse) {
+                Chat.INSTANCE.clearCache();
+            }
+        });
     }
 
     private void unbindChatListener() {

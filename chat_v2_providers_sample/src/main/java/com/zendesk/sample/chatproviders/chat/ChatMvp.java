@@ -25,6 +25,8 @@ interface ChatMvp {
 
         void clearChatIfEnded();
 
+        void endChat();
+
         interface ChatListener {
 
             void onUpdateChatState(ChatState chatState);
@@ -59,6 +61,8 @@ interface ChatMvp {
         void sendFile(List<MediaResult> mediaResults);
 
         void sendFile(File localFile);
+
+        void endChat();
 
         void onDestroy();
 

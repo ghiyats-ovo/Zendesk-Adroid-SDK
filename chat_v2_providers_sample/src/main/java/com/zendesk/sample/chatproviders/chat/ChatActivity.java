@@ -3,6 +3,7 @@ package com.zendesk.sample.chatproviders.chat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
@@ -69,20 +70,27 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
+        if (item.getItemId() == android.R.id.home) {
                 onBackPressed();
                 return true;
-            }
-            default: {
+        } else if (item.getItemId() == R.id.menu_end_chat) {
+                presenter.endChat();
+                finish();
+                return true;
+        } else {
                 return super.onOptionsItemSelected(item);
-            }
         }
     }
 }
