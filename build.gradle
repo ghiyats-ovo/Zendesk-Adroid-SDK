@@ -1,0 +1,42 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+ext {
+    applicationId = "com.zendesk.sample"
+    compileSdkVersion = 29
+    minSdkVersion = 16
+    targetSdkVersion = 29
+    supportSdkVersion = "5.0.1"
+    zopimSdkVersion = "1.4.9"
+    chatSdkVersion = "3.1.0"
+    connectSdkVersion = "3.0.0"
+    answerBotSdkVersion = "3.0.1"
+    messagingSdkVersion = "5.1.0"
+    guideSdkVersion = "1.0.0"
+    appCompatVersion = "1.1.0"
+    belvedereVersion = "2.3.0"
+}
+
+buildscript {
+    ext.kotlin_version = '1.3.72'
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
